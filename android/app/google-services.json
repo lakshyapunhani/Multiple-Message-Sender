@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "126955291914",
+    "firebase_url": "https://multiple-message-sender.firebaseio.com",
+    "project_id": "multiple-message-sender",
+    "storage_bucket": "multiple-message-sender.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:126955291914:android:10c3e7332e986817e566f3",
+        "android_client_info": {
+          "package_name": "fabuleux.com.multiple_message_sender"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "126955291914-c9rr0o3vb3lime8spoba5bdm9gdv29uh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdbbGD6GpBoiRg6skXnknav9XmStgkRsg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "126955291914-c9rr0o3vb3lime8spoba5bdm9gdv29uh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-7829821407228725~8757030991"
+
+    }
+  ],
+  "configuration_version": "1"
+}
