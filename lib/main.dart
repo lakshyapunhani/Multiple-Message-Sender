@@ -4,6 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sms/flutter_sms.dart';
 import 'package:firebase_admob/firebase_admob.dart';
+import 'package:moor/backends.dart';
+import 'package:multiple_message_sender/data/moor_database.dart';
+import 'package:multiple_message_sender/history.dart';
+import 'package:provider/provider.dart';
 
 
 void main() => runApp(MyApp());
@@ -12,13 +16,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Multiple Message Sender',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Multiple Message Sender'),
-    );
+
+    return Provider<MoorDatabase>(
+        create: (context) => new MoorDatabase(),
+        child:MaterialApp(
+          title: 'Multiple Message Sender',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          home: MyHomePage(title: 'Multiple Message Sender'),
+        ));
   }
 }
 
@@ -74,6 +81,13 @@ class _MyHomePageState extends State<MyHomePage> {
       resizeToAvoidBottomPadding: true,
       appBar: AppBar(
         title: Text(widget.title),
+        actions: <Widget>[
+          IconButton(icon: Icon(Icons.history),onPressed:() {
+            print("InterstitialAd event");
+            Navigator.push(context, MaterialPageRoute(builder: (context) =>
+                HistoryScreen()));
+          },)
+        ],
       ),
       body: Container(
           child:
@@ -110,7 +124,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 50,
                 width: double.infinity,
                 child: RaisedButton(color: Colors.blue,onPressed: () {
+                  final database = Provider.of<MoorDatabase>(context,
+                      listen: false);
+                  final message = Message(
+                      numbers: _numbersController.text,
+                      messageText: _messageController.text,
+                      timestamp: DateTime.now());
 
+                  database.insertMessage(message);
                   _openAd();
                 },
                     child: Text("SUBMIT",
